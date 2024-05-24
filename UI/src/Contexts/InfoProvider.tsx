@@ -27,7 +27,7 @@ export const InfoProvider = ({ children }: React.PropsWithChildren) => {
   });
   //quick and dirty fetch
   useEffect(() => {
-    fetch("/Decoy")
+    fetch("/Info")
       .then((response) => response.json())
       .then((data) => setInfo(data))
       .catch((error) => console.log(error));
