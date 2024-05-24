@@ -21,7 +21,10 @@ export const InfoContext = createContext<InfoContextValue>({
 });
 
 export const InfoProvider = ({ children }: React.PropsWithChildren) => {
-  const [info, setInfo] = useState<InfoResult>();
+  const [info, setInfo] = useState<InfoResult>({
+    CertificateHash: "DEFAULT",
+    SystemOS: "DEFAULT",
+  });
   //quick and dirty fetch
   useEffect(() => {
     fetch("/Decoy")
@@ -31,7 +34,10 @@ export const InfoProvider = ({ children }: React.PropsWithChildren) => {
   }, []);
 
   return (
-    <InfoContext.Provider key={JSON.stringify(info)} value={{ Info: info, SetInfo: setInfo, Env: "ACTIVE" }}>
+    <InfoContext.Provider
+      key={JSON.stringify(info)}
+      value={{ Info: info, SetInfo: setInfo, Env: "ACTIVE" }}
+    >
       {children}
     </InfoContext.Provider>
   );
